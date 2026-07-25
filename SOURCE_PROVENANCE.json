@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "surface": "cli",
   "targetRepository": "PidgeonHealth/pidgeon-cli",
-  "upstreamSha": "7db52f3eac0f42945708070a0886ad44ca9006fc",
+  "upstreamSha": "73b300a2670f8822a74543fafdd21ab18c55be84",
   "sourceRef": "origin/main",
   "manifestSha256": "be481561aa36b0f5fa9793b965378b2dc2590c3893ff03470135503d407f4606",
   "projectorPath": "scripts/public-release/project.mjs",
@@ -53,8 +53,8 @@
     },
     {
       "path": ".github/workflows/release.yml",
-      "sha256": "0fd40417c8e039a4f1c2e8da3dafde3888921a1b9af713b9a2304dd19705987f",
-      "size": 21468,
+      "sha256": "7bdcfc64ae757b2fd666f58a2a2726c368442f0fbdc60980c33c41b53ab1b42e",
+      "size": 24802,
       "mode": "100644",
       "source": "config/public-ci-templates/per-target/cli/release.yml",
       "license": "Pidgeon-Public-Documentation"
