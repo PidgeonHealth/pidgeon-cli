@@ -172,9 +172,10 @@ jobs:
               ) as destination:
                   # Preserve NuGet's original entry order, but emit the same
                   # Windows ZIP metadata used by the successful eSigner
-                  # qualification packages. Linux-created ZIP origin and
-                  # external attributes cause CodeSignTool/NuGet to disagree
-                  # about the signed archive and report NU3008.
+                  # qualification packages. Linux-created ZIP origin,
+                  # external attributes, and the 1980 DOS epoch cause the
+                  # signer to re-emit different archive metadata and make
+                  # CodeSignTool/NuGet disagree about the signed archive.
                   for entry in source.infolist():
                       name = entry.filename
                       target = fixed_core if name == core[0] else name
@@ -194,7 +195,11 @@ jobs:
                           if replacements != 1:
                               raise SystemExit('could not normalize the core-properties relationship')
 
-                      info = zipfile.ZipInfo(target, date_time=(1980, 1, 1, 0, 0, 0))
+                      # Keep a fixed, valid DOS timestamp. The ZIP epoch
+                      # (1980-01-01) makes Apache Commons Compress add an
+                      # extended-time extra field while signing; a fixed
+                      # post-epoch timestamp round-trips byte-for-byte.
+                      info = zipfile.ZipInfo(target, date_time=(2020, 1, 1, 0, 0, 0))
                       info.compress_type = entry.compress_type
                       info.create_system = 0
                       info.create_version = 20
