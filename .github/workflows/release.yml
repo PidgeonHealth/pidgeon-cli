@@ -388,7 +388,10 @@ jobs:
           $signed = 'artifacts/signed/Pidgeon.CLI.0.1.0-beta.1.nupkg'
           $verify = dotnet nuget verify $signed --all 2>&1 | Out-String
           $verify | Out-File artifacts/d3-package-signing.txt
-          if ($LASTEXITCODE -ne 0 -or $verify -notmatch 'Signature type: Author' -or $verify -notmatch 'Pattern Engine LLC') { throw 'author-signature verification failed' }
+          Write-Output $verify
+          if ($LASTEXITCODE -ne 0 -or $verify -notmatch 'Signature type: Author' -or $verify -notmatch 'Pattern Engine LLC') {
+            throw "author-signature verification failed (dotnet exit code $LASTEXITCODE)"
+          }
           "author_signed_sha256=$((Get-FileHash $signed -Algorithm SHA256).Hash.ToLowerInvariant())" | Out-File artifacts/d3-package-signing.txt -Append
           "controls_receipt_sha256=$env:APPROVED_CONTROLS_RECEIPT_SHA256" | Out-File artifacts/d3-package-signing.txt -Append
           Add-Type -AssemblyName System.IO.Compression.FileSystem
