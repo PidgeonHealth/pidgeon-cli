@@ -135,6 +135,75 @@ jobs:
           dotnet pack pidgeon-cli/src/Pidgeon.CLI/Pidgeon.CLI.csproj \
             --no-build --no-restore -c Release -o artifacts/candidate/packages \
             -p:IncludeSymbols=false -p:SymbolPackageFormat=snupkg
+
+      - name: Normalize the NuGet candidate archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          package="$GITHUB_WORKSPACE/artifacts/candidate/packages/Pidgeon.CLI.0.1.0-beta.1.nupkg"
+          python3 - "$package" <<'PY'
+          import hashlib
+          import pathlib
+          import re
+          import sys
+          import zipfile
+
+          package = pathlib.Path(sys.argv[1])
+          normalized = package.with_suffix('.normalized.nupkg')
+          fixed_core = 'package/services/metadata/core-properties/pidgeon-core-properties.psmdcp'
+
+          with zipfile.ZipFile(package) as source:
+              names = source.namelist()
+              core = [
+                  name for name in names
+                  if re.fullmatch(r'package/services/metadata/core-properties/[0-9a-f]+\.psmdcp', name)
+              ]
+              if len(core) != 1:
+                  raise SystemExit(f'expected one generated core-properties file, found {core!r}')
+              if len(names) != len(set(names)):
+                  raise SystemExit('candidate archive contains duplicate entries')
+
+              with zipfile.ZipFile(
+                  normalized,
+                  'w',
+                  compression=zipfile.ZIP_DEFLATED,
+                  compresslevel=9,
+              ) as destination:
+                  for name in sorted(names):
+                      target = fixed_core if name == core[0] else name
+                      data = source.read(name)
+                      if name == '_rels/.rels':
+                          data = re.sub(
+                              rb'Target="/package/services/metadata/core-properties/[0-9a-f]+\.psmdcp"',
+                              b'Target="/package/services/metadata/core-properties/pidgeon-core-properties.psmdcp"',
+                              data,
+                          )
+                          data, replacements = re.subn(
+                              rb'(<Relationship\s+Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties"\s+'
+                              rb'Target="/package/services/metadata/core-properties/pidgeon-core-properties\.psmdcp"\s+Id=")[^"]+("\s*/>)',
+                              rb'\1Rcore\2',
+                              data,
+                          )
+                          if replacements != 1:
+                              raise SystemExit('could not normalize the core-properties relationship')
+
+                      info = zipfile.ZipInfo(target, date_time=(1980, 1, 1, 0, 0, 0))
+                      info.compress_type = zipfile.ZIP_DEFLATED
+                      info.create_system = 0
+                      info.external_attr = 0
+                      info.flag_bits = 0x800
+                      destination.writestr(info, data)
+
+          normalized.replace(package)
+          with zipfile.ZipFile(package) as check:
+              check.testzip()
+              if check.namelist() != sorted(check.namelist()):
+                  raise SystemExit('normalized archive entries are not sorted')
+              if fixed_core not in check.namelist():
+                  raise SystemExit('normalized archive is missing the fixed core-properties path')
+          print(f'normalized {package} sha256={hashlib.sha256(package.read_bytes()).hexdigest()}')
+          PY
+
           test -f artifacts/candidate/packages/Pidgeon.CLI.0.1.0-beta.1.nupkg
           test "$(find artifacts/candidate/packages -maxdepth 1 -name '*.nupkg' | wc -l)" -eq 1
           test "$(find artifacts/candidate/packages -maxdepth 1 -name '*.snupkg' | wc -l)" -eq 0
