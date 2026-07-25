@@ -1,0 +1,49 @@
+# Read-only CI for PidgeonHealth/pidgeon-cli.
+#
+# Triggers only on pull_request (against the default branch) and workflow_dispatch. Never on
+# push or pull_request_target. SHA provenance: ../../CONTRACT.md § 3.
+
+name: ci
+
+on:
+  pull_request:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    name: build + test
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          dotnet-version: 8.0.x
+
+      # The PHL_DECOMPOSITION_PLAN § 4.4 "duality" check: restore explicitly against nuget.org
+      # (never a local/monorepo feed) so drift between "builds against a project reference" and
+      # "builds against the published package" surfaces here, not at a customer's install.
+      - name: Restore against nuget.org only
+        run: dotnet restore --source https://api.nuget.org/v3/index.json
+
+      - name: Build
+        run: dotnet build --no-restore -c Release
+
+      - name: Test
+        run: dotnet test --no-build -c Release --logger "console;verbosity=normal"
+
+      - name: Public command battery
+        run: >-
+          bash pidgeon-tests/public-cli-smoke.sh
+          pidgeon-cli/src/Pidgeon.CLI/bin/Release/net8.0/Pidgeon.CLI
+          0.1.0-beta.1

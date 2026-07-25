@@ -1,0 +1,13 @@
+<!--
+  Public mirror build defaults. The mirror is the community CLI composition and
+  resolves its engine/data dependencies from the exact released NuGet packages.
+-->
+<Project>
+  <PropertyGroup>
+    <PidgeonCommunityComposition>true</PidgeonCommunityComposition>
+    <PidgeonPublicMirror>true</PidgeonPublicMirror>
+    <PidgeonRepositoryRoot>$(MSBuildThisFileDirectory)</PidgeonRepositoryRoot>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <RestoreLockedMode>true</RestoreLockedMode>
+  </PropertyGroup>
+</Project>

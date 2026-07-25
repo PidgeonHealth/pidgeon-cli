@@ -1,0 +1,33 @@
+# Signed-out clean-build smoke for PidgeonHealth/pidgeon-cli (release policy § 5: "clean-machine
+# install passes the approved community-command smoke").
+#
+# Installs the PUBLISHED tool from nuget.org on a clean runner (never `dotnet tool install
+# --add-source` pointed at a local build) and runs the community-command smoke.
+
+name: clean-build-smoke
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  anonymous-install-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Install the published tool
+        run: dotnet tool install --global Pidgeon.CLI --version 0.1.0-beta.1
+
+      - name: Community-command smoke
+        run: |
+          export PATH="$PATH:$HOME/.dotnet/tools"
+          pidgeon --version
+          pidgeon generate ADT^A01
+          pidgeon validate --help
+          pidgeon lookup --help

@@ -1,0 +1,57 @@
+<!-- Generated from config/public-compositions/community.yaml. Do not edit by hand. -->
+<Project>
+  <PropertyGroup>
+    <PidgeonRepositoryRoot Condition="'$(PidgeonRepositoryRoot)' == ''">$(MSBuildThisFileDirectory)..\..\..</PidgeonRepositoryRoot>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Commands/ArtifactsCommand.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Commands/CapabilitiesCommand.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Commands/CommandBuilderBase.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Commands/CompletionsCommand.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Commands/DataCommand.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Commands/DeIdentifyCommand.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Commands/FindCommand.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Commands/GenerateCommand.Helpers.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Commands/GenerateCommand.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Commands/LookupCommand.Display.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Commands/LookupCommand.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Commands/PathCommand.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Commands/Paths/Orchestrators/ListPathOrchestrator.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Commands/Paths/Orchestrators/ResolvePathOrchestrator.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Commands/Paths/Orchestrators/SearchPathOrchestrator.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Commands/Paths/Orchestrators/ValidatePathOrchestrator.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Commands/Paths/PathMetadataProvider.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Commands/RunCommand.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Commands/Session/Orchestrators/ClearSessionOrchestrator.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Commands/Session/Orchestrators/CreateSessionOrchestrator.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Commands/Session/Orchestrators/ExportSessionOrchestrator.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Commands/Session/Orchestrators/ImportSessionOrchestrator.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Commands/Session/Orchestrators/ListSessionsOrchestrator.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Commands/Session/Orchestrators/RemoveSessionOrchestrator.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Commands/Session/Orchestrators/SaveSessionOrchestrator.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Commands/Session/Orchestrators/ShowSessionOrchestrator.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Commands/Session/Orchestrators/StatusSessionOrchestrator.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Commands/Session/Orchestrators/UseSessionOrchestrator.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Commands/SessionCommand.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Commands/ValidateCommand.Rendering.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Commands/ValidateCommand.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Extensions/CommunityServiceCollectionExtensions.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Output/ConsoleOutput.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Output/IConsoleOutput.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/PublicProgram.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Services/BannerService.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Services/CommunityVendorProfileResolver.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Services/ConfigurationStorage.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Services/FirstTimeUserService.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Services/HealthcareCompletions.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Services/IAiModelSetupService.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Services/ISemanticAdvisoryService.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Services/IValidationProfileResolver.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Services/SessionHelper.cs" />
+    <Compile Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.CLI/Services/ShareHintService.cs" />
+    <ProjectReference Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.Core/Pidgeon.Core.csproj" />
+    <ProjectReference Include="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.Data.Baseline/Pidgeon.Data.Baseline.csproj" />
+  </ItemGroup>
+</Project>

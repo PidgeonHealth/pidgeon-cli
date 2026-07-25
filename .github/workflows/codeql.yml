@@ -1,0 +1,36 @@
+# CodeQL static analysis for PidgeonHealth/pidgeon-cli. Dispatch/schedule-gated. SHA provenance:
+# ../../CONTRACT.md § 3.
+
+name: codeql
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: '23 6 * * 1'
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  analyze:
+    name: analyze (csharp)
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          dotnet-version: 8.0.x
+
+      - uses: github/codeql-action/init@7188fc363630916deb702c7fdcf4e481b751f97a # v4.37.1
+        with:
+          languages: csharp
+          build-mode: autobuild
+
+      - uses: github/codeql-action/analyze@7188fc363630916deb702c7fdcf4e481b751f97a # v4.37.1
+        with:
+          category: '/language:csharp'

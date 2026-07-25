@@ -1,0 +1,56 @@
+<!--
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+-->
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\..\config\public-compositions\generated\Pidgeon.CLI.Community.items.props" />
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>true</IsPackable>
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>pidgeon</ToolCommandName>
+
+    <PackageId>Pidgeon.CLI</PackageId>
+    <Version>0.1.0-beta.1</Version>
+    <PackageVersion>0.1.0-beta.1</PackageVersion>
+    <AssemblyTitle>Pidgeon CLI</AssemblyTitle>
+    <AssemblyDescription>Community healthcare message generation, validation, and testing toolkit</AssemblyDescription>
+    <AssemblyCompany>Pidgeon Health</AssemblyCompany>
+    <AssemblyProduct>Pidgeon CLI</AssemblyProduct>
+    <PackageDescription>Generate, validate, inspect, and de-identify synthetic HL7, FHIR, and NCPDP messages for healthcare integration testing.</PackageDescription>
+    <Authors>Pidgeon Health</Authors>
+    <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/PidgeonHealth/pidgeon-cli</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/PidgeonHealth/pidgeon-cli</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>healthcare;hl7;fhir;ncpdp;testing;synthetic-data;interoperability</PackageTags>
+    <PackageReleaseNotes>First source-correspondent public beta of the community Pidgeon CLI.</PackageReleaseNotes>
+    <PackageReadmeFile>NUGET_README.md</PackageReadmeFile>
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Remove="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.Core/Pidgeon.Core.csproj" />
+    <ProjectReference Remove="$(PidgeonRepositoryRoot)/pidgeon-cli/src/Pidgeon.Data.Baseline/Pidgeon.Data.Baseline.csproj" />
+    <PackageReference Include="Pidgeon.Core" Version="0.1.0-beta.1" />
+    <PackageReference Include="Pidgeon.Data.Baseline" Version="0.1.0-beta.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="8.0.0" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+    <PackageReference Include="System.CommandLine" Version="2.0.0-beta5.25277.114" />
+    <PackageReference Include="Spectre.Console" Version="0.49.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="NUGET_README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+</Project>

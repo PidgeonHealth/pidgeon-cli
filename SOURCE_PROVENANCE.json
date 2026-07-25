@@ -1,0 +1,527 @@
+{
+  "schemaVersion": 1,
+  "surface": "cli",
+  "targetRepository": "PidgeonHealth/pidgeon-cli",
+  "upstreamSha": "a7244dd113753064267b201dd03a80080b1a19c8",
+  "sourceRef": "origin/main",
+  "manifestSha256": "be481561aa36b0f5fa9793b965378b2dc2590c3893ff03470135503d407f4606",
+  "projectorPath": "scripts/public-release/project.mjs",
+  "projectorSha256": "f45498479728274e9a1e844bd83ca25a05c35b17c487e0544ffbfd2e10c942b8",
+  "compositionManifestPath": "config/public-compositions/community.yaml",
+  "compositionManifestSha256": "560b0079e52d178389dbbdc6a556208b70cfeed16403dfa944f83cf6f8391f49",
+  "secretScanner": "pidgeon-public-projection-v1",
+  "files": [
+    {
+      "path": ".github/CODEOWNERS",
+      "sha256": "371c3127a00ea305b652a7883ec882deea9394a620bb93a6495fb3dd8c577c19",
+      "size": 91,
+      "mode": "100644",
+      "source": "config/public-ci-templates/per-target/cli/CODEOWNERS",
+      "license": "Pidgeon-Public-Documentation"
+    },
+    {
+      "path": ".github/dependabot.yml",
+      "sha256": "7332fc46fc7b75575a710362c1b64510a2e1f24bd248e7b3e45e38112a9a666d",
+      "size": 533,
+      "mode": "100644",
+      "source": "config/public-ci-templates/per-target/cli/dependabot.yml",
+      "license": "Pidgeon-Public-Documentation"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "6cd4d803ad9bc23756909b5ed7d42978ffaa79a377a5300c7eb9d5aa1a3ccf64",
+      "size": 1537,
+      "mode": "100644",
+      "source": "config/public-ci-templates/per-target/cli/ci.yml",
+      "license": "Pidgeon-Public-Documentation"
+    },
+    {
+      "path": ".github/workflows/clean-build-smoke.yml",
+      "sha256": "2991f9506d8a8d622420712b012c138e47f541a898c34bbbdcca292af9efe602",
+      "size": 992,
+      "mode": "100644",
+      "source": "config/public-ci-templates/per-target/cli/clean-build-smoke.yml",
+      "license": "Pidgeon-Public-Documentation"
+    },
+    {
+      "path": ".github/workflows/codeql.yml",
+      "sha256": "08a45ad119f990c035ddfd3eb54cad1178513116d61881003dad21133163571e",
+      "size": 944,
+      "mode": "100644",
+      "source": "config/public-ci-templates/per-target/cli/codeql.yml",
+      "license": "Pidgeon-Public-Documentation"
+    },
+    {
+      "path": ".github/workflows/release.yml",
+      "sha256": "ee5b183ddf4889747691876d7990a1703f97029f4c496dacce4b5c224d015468",
+      "size": 21347,
+      "mode": "100644",
+      "source": "config/public-ci-templates/per-target/cli/release.yml",
+      "license": "Pidgeon-Public-Documentation"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "sha256": "1d0b18e31952f4896f892fe001ed68cffbc5a2eb9395fe114c3fedee08b2b5bc",
+      "size": 1507,
+      "mode": "100644",
+      "source": "config/public-projections/scaffold/shared/CONTRIBUTING.md",
+      "license": "Pidgeon-Public-Documentation"
+    },
+    {
+      "path": "DCO",
+      "sha256": "f7ac75b443f4ca16b503241344b41aeff9503b0c30bedc2b119551d83cb0fa90",
+      "size": 1366,
+      "mode": "100644",
+      "source": "config/public-projections/scaffold/shared/DCO",
+      "license": "Pidgeon-Public-Documentation"
+    },
+    {
+      "path": "Directory.Build.props",
+      "sha256": "58ed7b6649bef6fda650ca200a6e23aab5b4fe131cd838bf32568e6b3f6f6c73",
+      "size": 542,
+      "mode": "100644",
+      "source": "config/public-projections/scaffold/cli/Directory.Build.props",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "fd590ce7c5df3e6a1f38481cfc0c244b3a192c8a4c79fd7cf95676ef2c81cf34",
+      "size": 14848,
+      "mode": "100644",
+      "source": "config/public-projections/scaffold/shared/LICENSE",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "NOTICE.md",
+      "sha256": "41607e809b218caab8f1318a3e7d6d4db269acb85cec5d14f76dce7afd163aa3",
+      "size": 1178,
+      "mode": "100644",
+      "source": "config/public-projections/scaffold/shared/NOTICE.md",
+      "license": "Pidgeon-Public-Documentation"
+    },
+    {
+      "path": "Pidgeon.sln",
+      "sha256": "f74b9ed352baa7a29fd4901885586e1c48837b1857f0088a83e0688cdb1a2dc9",
+      "size": 921,
+      "mode": "100644",
+      "source": "config/public-projections/scaffold/cli/Pidgeon.sln",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "README.md",
+      "sha256": "7bc6d174c9236391c99a29bc6137a7ad763c59f2880ad274bd4a486c293b6903",
+      "size": 1910,
+      "mode": "100644",
+      "source": "config/public-projections/scaffold/cli/README.md",
+      "license": "Pidgeon-Public-Documentation"
+    },
+    {
+      "path": "SECURITY.md",
+      "sha256": "8a512507d3ea20d64014b4cc18d8ae0ff3d8e4dd1bc20b99ee1f59b1451f0034",
+      "size": 2648,
+      "mode": "100644",
+      "source": "config/public-projections/scaffold/shared/SECURITY.md",
+      "license": "Pidgeon-Public-Documentation"
+    },
+    {
+      "path": "config/public-compositions/generated/Pidgeon.CLI.Community.items.props",
+      "sha256": "deaccbbc6a718b0e984ff9ca7aedcf71719aea403ff0841ac037ad94e0af8273",
+      "size": 6012,
+      "mode": "100644",
+      "source": "config/public-compositions/generated/Pidgeon.CLI.Community.items.props",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Commands/ArtifactsCommand.cs",
+      "sha256": "4b95ee29c6814f34a2a06e67d91c601b2ba2a69a7c0dbd7efba563e5c494829e",
+      "size": 8434,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Commands/ArtifactsCommand.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Commands/CapabilitiesCommand.cs",
+      "sha256": "d54de038c640f8e4b85783460d1dde074714709bc0c225f5725b3db3273f386b",
+      "size": 7987,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Commands/CapabilitiesCommand.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Commands/CommandBuilderBase.cs",
+      "sha256": "71fe7fd4d27803eef3427916b29aeccec33816cf3a8a8de689af9a2026fdc201",
+      "size": 11164,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Commands/CommandBuilderBase.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Commands/CompletionsCommand.cs",
+      "sha256": "d6092ec2ec364025296a5d8e4d78a757ff26c9ec6c163ba58d76f783736c4ac5",
+      "size": 6450,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Commands/CompletionsCommand.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Commands/DataCommand.cs",
+      "sha256": "b37ed3f712cf625fd195a482ad58f682156de8d851fa6fba019426b267cce660",
+      "size": 10775,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Commands/DataCommand.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Commands/DeIdentifyCommand.cs",
+      "sha256": "3076d28b29f19219a1215cebfcee6a33d01c14201fc3a879ab80e0511b0aead7",
+      "size": 14256,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Commands/DeIdentifyCommand.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Commands/FindCommand.cs",
+      "sha256": "0c6e04bb7f43eb58af319ca3fa073a16941821d68befae6efaf0d260d55bc554",
+      "size": 24525,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Commands/FindCommand.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Commands/GenerateCommand.Helpers.cs",
+      "sha256": "3b846d1c7d25e9ad3374d9de868438fedd7ac4182a56a60da271d88ab6f480f4",
+      "size": 7801,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Commands/GenerateCommand.Helpers.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Commands/GenerateCommand.cs",
+      "sha256": "286a72f66d2c40c8561d0a789a78d257c3ba7c323a5340f33af038dbbba3254a",
+      "size": 17362,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Commands/GenerateCommand.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Commands/LookupCommand.Display.cs",
+      "sha256": "ec3c5b2fd5d2f099132b486ef176f2c906ce4c8faf3183005942cd0a192cfdf6",
+      "size": 7039,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Commands/LookupCommand.Display.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Commands/LookupCommand.cs",
+      "sha256": "a623bfb475b0f5bc6babe2c07ab4d41dcd67303148f7de6e853380a8a3a34d68",
+      "size": 12110,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Commands/LookupCommand.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Commands/PathCommand.cs",
+      "sha256": "d85a1281c4160b464236f9f7cfbe0914162cfac718fd8cae421a189e912e621f",
+      "size": 9316,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Commands/PathCommand.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Commands/Paths/Orchestrators/ListPathOrchestrator.cs",
+      "sha256": "1e526028b833e04469c488f9a82c0d78f32283e27243e8782e0fa5455e26ae38",
+      "size": 6541,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Commands/Paths/Orchestrators/ListPathOrchestrator.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Commands/Paths/Orchestrators/ResolvePathOrchestrator.cs",
+      "sha256": "7642f798c5e77b94e8a0e4ed95073d7732c8aaf2c59693d16725e11de70f43a1",
+      "size": 4167,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Commands/Paths/Orchestrators/ResolvePathOrchestrator.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Commands/Paths/Orchestrators/SearchPathOrchestrator.cs",
+      "sha256": "52792b10ef306f0afb6f401d06e2974a7a50fd1bf71a83812a3f589c6e82f08e",
+      "size": 3910,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Commands/Paths/Orchestrators/SearchPathOrchestrator.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Commands/Paths/Orchestrators/ValidatePathOrchestrator.cs",
+      "sha256": "45f27354f94c0c4e0ba72cb019b11d08a4a68ca774f4c7113587eb255c1baa3b",
+      "size": 3517,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Commands/Paths/Orchestrators/ValidatePathOrchestrator.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Commands/Paths/PathMetadataProvider.cs",
+      "sha256": "6c0ca641ae71b0a4bbb7c6abd9fe79c9ca58355dc130d542689b51a1fe4d32b8",
+      "size": 4157,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Commands/Paths/PathMetadataProvider.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Commands/RunCommand.cs",
+      "sha256": "6dbcaafb0a22bc9f26c4f39dc73f74c7007f046910dfe844249cca672153b2d8",
+      "size": 30547,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Commands/RunCommand.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Commands/Session/Orchestrators/ClearSessionOrchestrator.cs",
+      "sha256": "98116fb593b814a3c0bb88f87eb5199ec1f1a13c6c888293a91e01feff5f41d0",
+      "size": 1604,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Commands/Session/Orchestrators/ClearSessionOrchestrator.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Commands/Session/Orchestrators/CreateSessionOrchestrator.cs",
+      "sha256": "b87f5f7246b03df5320cd522d1d98e1398eac6da177300a86c1068b80cf33a4a",
+      "size": 1653,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Commands/Session/Orchestrators/CreateSessionOrchestrator.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Commands/Session/Orchestrators/ExportSessionOrchestrator.cs",
+      "sha256": "a0fa55db7ce0d32e33afe8caca8994fbdf744ace2d1381595c53487060942b14",
+      "size": 3398,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Commands/Session/Orchestrators/ExportSessionOrchestrator.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Commands/Session/Orchestrators/ImportSessionOrchestrator.cs",
+      "sha256": "8394902989aa293a6a3c7172356f6f00547d4b6db1cc8c2ddda1d5a0e55e1428",
+      "size": 4767,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Commands/Session/Orchestrators/ImportSessionOrchestrator.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Commands/Session/Orchestrators/ListSessionsOrchestrator.cs",
+      "sha256": "7dd8616f8336fa65a2521af22723d96f9f79646aaf0abe5597cd5a46a33a8c75",
+      "size": 3127,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Commands/Session/Orchestrators/ListSessionsOrchestrator.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Commands/Session/Orchestrators/RemoveSessionOrchestrator.cs",
+      "sha256": "755432327b3be159f998fd7d029548acf1123fbf6791d549a5d62e5fbe4bbac2",
+      "size": 2300,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Commands/Session/Orchestrators/RemoveSessionOrchestrator.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Commands/Session/Orchestrators/SaveSessionOrchestrator.cs",
+      "sha256": "797ee93e8f410fd6a65174c3df0ad8ea9642dad1677da983bdbf6422c1f18a0d",
+      "size": 2275,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Commands/Session/Orchestrators/SaveSessionOrchestrator.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Commands/Session/Orchestrators/ShowSessionOrchestrator.cs",
+      "sha256": "c3a2e3f78c309bdc3f517dac2bd2d122ed3af2f42c2d38febf05054f54ac993a",
+      "size": 3507,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Commands/Session/Orchestrators/ShowSessionOrchestrator.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Commands/Session/Orchestrators/StatusSessionOrchestrator.cs",
+      "sha256": "f3939c1b89dd483bf99fc3cb01279fcc1a78bf2e75b991f64f71f6bcf8488ba4",
+      "size": 3377,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Commands/Session/Orchestrators/StatusSessionOrchestrator.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Commands/Session/Orchestrators/UseSessionOrchestrator.cs",
+      "sha256": "10e09e05cbbd553935404e0462008c5f1f6ad40dbafbd201ab9b6e452119aa33",
+      "size": 1953,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Commands/Session/Orchestrators/UseSessionOrchestrator.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Commands/SessionCommand.cs",
+      "sha256": "9c6e31ab8d62f07d6e1e2f294c0782f37f61e92372a1990c7612c75aa2933445",
+      "size": 8741,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Commands/SessionCommand.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Commands/ValidateCommand.Rendering.cs",
+      "sha256": "18ab92e36fe05290b97ef60bccfb69440be5437fe3958a4d63f4999ad02c9b93",
+      "size": 5745,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Commands/ValidateCommand.Rendering.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Commands/ValidateCommand.cs",
+      "sha256": "396c9d1bc5ce3b5a0886c49e1774f90688c4b8bc51bd29ad5e2e8715d179beae",
+      "size": 17070,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Commands/ValidateCommand.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Extensions/CommunityServiceCollectionExtensions.cs",
+      "sha256": "e79dc366a634123ac2ec2a9397523e899e7da6a5fe5787b73b84c6c88482d9fd",
+      "size": 5884,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Extensions/CommunityServiceCollectionExtensions.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/NUGET_README.md",
+      "sha256": "e340eb8af1c0164385a77379f28ccd3ccae1874c34052892da610a237ac7fcd2",
+      "size": 1369,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/NUGET_README.md",
+      "license": "Pidgeon-Public-Documentation"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Output/ConsoleOutput.cs",
+      "sha256": "46e8c0adad7b26ef4ce0deb1a29679159519f3bb6a1fd5a69a4e9e3959c74594",
+      "size": 3248,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Output/ConsoleOutput.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Output/IConsoleOutput.cs",
+      "sha256": "0ba7e2b0f39e6ec0a4a843acaeb1dbb9483e2b71261463d059a2f713a28cafb9",
+      "size": 2102,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Output/IConsoleOutput.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Pidgeon.CLI.csproj",
+      "sha256": "5cdb861175d2e7a144efbc262bda1e2daef1727f27e88d384331937ba3958c81",
+      "size": 3091,
+      "mode": "100644",
+      "source": "config/public-projections/scaffold/cli/Pidgeon.CLI.csproj",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/PublicProgram.cs",
+      "sha256": "a43e7b130a4b6a062b242bb5ef4fb36ce95263a37455991740f7428c9a8ccaa3",
+      "size": 5878,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/PublicProgram.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Services/BannerService.cs",
+      "sha256": "7d673237be3983bfac6b4fcb9ed0c9508e1af5f4ead0ff5eb27f85bbfd648289",
+      "size": 6486,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Services/BannerService.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Services/CommunityVendorProfileResolver.cs",
+      "sha256": "d40a43aa7c1b4a7478b7ebe2fe0c2670926d37b4a08ecf7221dde976ab56ba62",
+      "size": 1788,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Services/CommunityVendorProfileResolver.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Services/ConfigurationStorage.cs",
+      "sha256": "70519e1dff155122bcdba6c0c4a0c31cceed45c0b54ca0f6f30747681f632b3d",
+      "size": 12624,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Services/ConfigurationStorage.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Services/FirstTimeUserService.cs",
+      "sha256": "5979c281dc258390c7690d66d33e102f167f0b850ebbdda7147860e3cea4d762",
+      "size": 14325,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Services/FirstTimeUserService.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Services/HealthcareCompletions.cs",
+      "sha256": "e42b3e7198ee55303ef85778d8ca83ae2847e6636e440fdb35b5dd3eee8a1d1b",
+      "size": 20088,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Services/HealthcareCompletions.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Services/IAiModelSetupService.cs",
+      "sha256": "8e8e8e963a6be601a8723bdfbc9dc304a5daff94d12ca5bff2e2c3881064dfd8",
+      "size": 870,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Services/IAiModelSetupService.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Services/ISemanticAdvisoryService.cs",
+      "sha256": "24c051c59fddb301df8b4657dd399253545b0f177c77dafa80dbac22b292913e",
+      "size": 2722,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Services/ISemanticAdvisoryService.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Services/IValidationProfileResolver.cs",
+      "sha256": "a87c2f5769cc39a13530031f7ee17ed73202318a7473c51c62e6b8812ff5390b",
+      "size": 866,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Services/IValidationProfileResolver.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Services/SessionHelper.cs",
+      "sha256": "1131a98e090714f86e45ea199db0c1cdec49fb2164643523172a5604833ecda0",
+      "size": 12655,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Services/SessionHelper.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/Services/ShareHintService.cs",
+      "sha256": "adc18dc4799a9e332994e43ccd5d63f8dfe59af56e2560e26efc3055c89fff5f",
+      "size": 2642,
+      "mode": "100644",
+      "source": "pidgeon-cli/src/Pidgeon.CLI/Services/ShareHintService.cs",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-cli/src/Pidgeon.CLI/packages.lock.json",
+      "sha256": "9cb1629d4056b53d3e728f6064f139529b080f9f6b3a458f48742179d1e13199",
+      "size": 18590,
+      "mode": "100644",
+      "source": "config/public-projections/scaffold/cli/packages.lock.json",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "pidgeon-tests/public-cli-smoke.sh",
+      "sha256": "c34dbca99ada6029142addbef814f5cb0472d340fab2fe025f8fa935ee463ceb",
+      "size": 3696,
+      "mode": "100755",
+      "source": "pidgeon-tests/public-cli-smoke.sh",
+      "license": "MPL-2.0"
+    }
+  ]
+}
