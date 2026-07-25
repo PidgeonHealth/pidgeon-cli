@@ -287,9 +287,10 @@ jobs:
           CREDENTIAL_ID: ${{ secrets.CREDENTIAL_ID }}
         run: |
           $ErrorActionPreference = 'Stop'
+          $package = (Resolve-Path (Join-Path $env:GITHUB_WORKSPACE 'artifacts/candidate/packages/Pidgeon.CLI.0.1.0-beta.1.nupkg')).Path
           Push-Location $env:CODE_SIGN_TOOL_PATH
           try {
-            & $env:CODESIGNTOOL_PATH scan_code "-credential_id=$env:CREDENTIAL_ID" "-username=$env:ES_USERNAME" "-password=$env:ES_PASSWORD" "-input_file_path=$((Resolve-Path artifacts/candidate/packages/Pidgeon.CLI.0.1.0-beta.1.nupkg).Path)"
+            & $env:CODESIGNTOOL_PATH scan_code "-credential_id=$env:CREDENTIAL_ID" "-username=$env:ES_USERNAME" "-password=$env:ES_PASSWORD" "-input_file_path=$package"
             if ($LASTEXITCODE -ne 0) { throw 'pre-sign malware scan failed' }
           } finally { Pop-Location }
 
@@ -302,11 +303,12 @@ jobs:
           CREDENTIAL_ID: ${{ secrets.CREDENTIAL_ID }}
         run: |
           $ErrorActionPreference = 'Stop'
-          New-Item -ItemType Directory -Force artifacts/signed | Out-Null
-          $package = (Resolve-Path artifacts/candidate/packages/Pidgeon.CLI.0.1.0-beta.1.nupkg).Path
+          $signedDir = Join-Path $env:GITHUB_WORKSPACE 'artifacts/signed'
+          New-Item -ItemType Directory -Force $signedDir | Out-Null
+          $package = (Resolve-Path (Join-Path $env:GITHUB_WORKSPACE 'artifacts/candidate/packages/Pidgeon.CLI.0.1.0-beta.1.nupkg')).Path
           Push-Location $env:CODE_SIGN_TOOL_PATH
           try {
-            & $env:CODESIGNTOOL_PATH sign "-credential_id=$env:CREDENTIAL_ID" "-username=$env:ES_USERNAME" "-password=$env:ES_PASSWORD" "-totp_secret=$env:ES_TOTP_SECRET" "-input_file_path=$package" "-output_dir_path=$((Resolve-Path artifacts/signed).Path)"
+            & $env:CODESIGNTOOL_PATH sign "-credential_id=$env:CREDENTIAL_ID" "-username=$env:ES_USERNAME" "-password=$env:ES_PASSWORD" "-totp_secret=$env:ES_TOTP_SECRET" "-input_file_path=$package" "-output_dir_path=$signedDir"
             if ($LASTEXITCODE -ne 0) { throw 'author-sign failed' }
           } finally { Pop-Location }
 
