@@ -160,7 +160,7 @@ jobs:
             -bc "$GITHUB_WORKSPACE" \
             -m "$GITHUB_WORKSPACE/artifacts/candidate/sbom" \
             -pn Pidgeon.CLI-public-source -pv 0.1.0-beta.1 -ps 'Pidgeon Health' \
-            -nsb https://pidgeon.health/sbom -nsu "$GITHUB_SHA" -v "$generated_at" -gt "$generated_at" \
+            -nsb https://pidgeon.health/sbom -nsu "$GITHUB_SHA" -gt "$generated_at" \
             -pm true -li false -F false
           manifest='artifacts/candidate/sbom/_manifest/spdx_2.2/manifest.spdx.json'
           jq --sort-keys --arg candidate "$GITHUB_SHA" \
