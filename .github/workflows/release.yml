@@ -218,7 +218,7 @@ jobs:
           offset = 0
           central_entries = 0
           while True:
-              offset = raw.find(b'PK\\x01\\x02', offset)
+              offset = raw.find(b'PK\x01\x02', offset)
               if offset < 0:
                   break
               if offset + 46 > len(raw):
