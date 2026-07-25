@@ -169,7 +169,13 @@ jobs:
                   compression=zipfile.ZIP_DEFLATED,
                   compresslevel=9,
               ) as destination:
-                  for name in sorted(names):
+                  # Preserve NuGet's original entry order and ZIP metadata.
+                  # SSL.com CodeSignTool signs the archive structure as NuGet
+                  # defines it; rewriting those fields (especially the origin
+                  # and external attributes) can produce a signature that
+                  # reports NU3008 even though the payload files are unchanged.
+                  for entry in source.infolist():
+                      name = entry.filename
                       target = fixed_core if name == core[0] else name
                       data = source.read(name)
                       if name == '_rels/.rels':
@@ -188,17 +194,23 @@ jobs:
                               raise SystemExit('could not normalize the core-properties relationship')
 
                       info = zipfile.ZipInfo(target, date_time=(1980, 1, 1, 0, 0, 0))
-                      info.compress_type = zipfile.ZIP_DEFLATED
-                      info.create_system = 0
-                      info.external_attr = 0
-                      info.flag_bits = 0x800
+                      info.compress_type = entry.compress_type
+                      info.create_system = entry.create_system
+                      info.create_version = entry.create_version
+                      info.extract_version = entry.extract_version
+                      info.flag_bits = entry.flag_bits
+                      info.volume = entry.volume
+                      info.internal_attr = entry.internal_attr
+                      info.external_attr = entry.external_attr
+                      info.extra = entry.extra
+                      info.comment = entry.comment
                       destination.writestr(info, data)
 
           normalized.replace(package)
           with zipfile.ZipFile(package) as check:
               check.testzip()
-              if check.namelist() != sorted(check.namelist()):
-                  raise SystemExit('normalized archive entries are not sorted')
+              if check.namelist() != names:
+                  raise SystemExit('normalized archive changed NuGet entry order')
               if fixed_core not in check.namelist():
                   raise SystemExit('normalized archive is missing the fixed core-properties path')
           print(f'normalized {package} sha256={hashlib.sha256(package.read_bytes()).hexdigest()}')
