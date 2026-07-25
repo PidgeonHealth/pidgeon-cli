@@ -235,11 +235,11 @@ jobs:
           normalized.write_bytes(raw)
 
           normalized.replace(package)
-              with zipfile.ZipFile(package) as check:
-                  check.testzip()
-                  expected_names = [fixed_core if name == core[0] else name for name in names]
-                  if check.namelist() != expected_names:
-                      raise SystemExit('normalized archive changed NuGet entry order')
+          with zipfile.ZipFile(package) as check:
+              check.testzip()
+              expected_names = [fixed_core if name == core[0] else name for name in names]
+              if check.namelist() != expected_names:
+                  raise SystemExit('normalized archive changed NuGet entry order')
               if fixed_core not in check.namelist():
                   raise SystemExit('normalized archive is missing the fixed core-properties path')
           print(f'normalized {package} sha256={hashlib.sha256(package.read_bytes()).hexdigest()}')
