@@ -145,6 +145,7 @@ jobs:
           import hashlib
           import pathlib
           import re
+          import struct
           import sys
           import zipfile
 
@@ -201,12 +202,39 @@ jobs:
                       info.flag_bits = 0
                       info.volume = 0
                       info.internal_attr = 0
-                      info.external_attr = 0
+                      # zipfile replaces a false external_attr with POSIX
+                      # permissions while writing. Use a nonzero placeholder,
+                      # then clear the central-directory field below.
+                      info.external_attr = 1
                       info.extra = b''
                       info.comment = b''
                       destination.writestr(info, data)
 
-              normalized.replace(package)
+          # Python's ZipFile writer substitutes POSIX permissions when the
+          # external attribute is false. Windows-created NuGet packages carry
+          # zero here, so patch the central-directory field after the archive
+          # is closed without touching payload bytes or entry order.
+          raw = bytearray(normalized.read_bytes())
+          offset = 0
+          central_entries = 0
+          while True:
+              offset = raw.find(b'PK\\x01\\x02', offset)
+              if offset < 0:
+                  break
+              if offset + 46 > len(raw):
+                  raise SystemExit('truncated central-directory header')
+              name_length, extra_length, comment_length = struct.unpack_from('<HHH', raw, offset + 28)
+              end = offset + 46 + name_length + extra_length + comment_length
+              if end > len(raw):
+                  raise SystemExit('truncated central-directory entry')
+              struct.pack_into('<I', raw, offset + 38, 0)
+              central_entries += 1
+              offset = end
+          if central_entries != len(names):
+              raise SystemExit('normalized archive central-directory count mismatch')
+          normalized.write_bytes(raw)
+
+          normalized.replace(package)
               with zipfile.ZipFile(package) as check:
                   check.testzip()
                   expected_names = [fixed_core if name == core[0] else name for name in names]
