@@ -151,7 +151,6 @@ jobs:
           mkdir -p artifacts/candidate/packages
           dotnet pack pidgeon-cli/src/Pidgeon.CLI/Pidgeon.CLI.csproj \
             --no-build --no-restore -c Release -o artifacts/candidate/packages \
-            -p:RuntimeIdentifier=win-x64 \
             -p:IncludeSymbols=false -p:SymbolPackageFormat=snupkg
 
       - name: Normalize the NuGet candidate archive
