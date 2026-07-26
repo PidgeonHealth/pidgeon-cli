@@ -136,14 +136,6 @@ jobs:
       - name: Run the community command battery
         run: bash pidgeon-tests/public-cli-smoke.sh pidgeon-cli/src/Pidgeon.CLI/bin/Release/net8.0/Pidgeon.CLI 0.1.0-beta.2
 
-      # PackAsTool invokes publish targets for the declared win-x64 runtime graph.
-      # Build that exact project/RID closure after the framework-neutral command
-      # battery, rather than attempting an unsupported solution-wide RID build.
-      - name: Build the CLI package runtime closure
-        run: >-
-          dotnet build pidgeon-cli/src/Pidgeon.CLI/Pidgeon.CLI.csproj
-          --no-restore -c Release -r win-x64
-
       - name: Pack one unsigned CLI candidate
         shell: bash
         run: |
@@ -153,23 +145,32 @@ jobs:
             --no-build --no-restore -c Release -o artifacts/candidate/packages \
             -p:IncludeSymbols=false -p:SymbolPackageFormat=snupkg
 
-          # The runtime-closure build intentionally restores win-x64 before pack.
-          # The .NET SDK may therefore emit both the public package and its
-          # intermediate RID-suffixed companion. The release surface contains
-          # exactly one package: remove that one known intermediate only, and
-          # fail closed if the SDK emits anything else.
           package_dir='artifacts/candidate/packages'
           expected_package='Pidgeon.CLI.0.1.0-beta.2.nupkg'
-          intermediate_package='Pidgeon.CLI.win-x64.0.1.0-beta.2.nupkg'
           mapfile -t generated_nupkgs < <(find "$package_dir" -maxdepth 1 -type f -name '*.nupkg' -printf '%f\n' | sort)
-          if [[ "${#generated_nupkgs[@]}" -eq 2 &&
-                "${generated_nupkgs[0]}" == "$expected_package" &&
-                "${generated_nupkgs[1]}" == "$intermediate_package" ]]; then
-            rm -- "$package_dir/$intermediate_package"
-          else
+          if [[ "${#generated_nupkgs[@]}" -ne 1 || "${generated_nupkgs[0]}" != "$expected_package" ]]; then
             printf 'unexpected CLI package set:\n%s\n' "${generated_nupkgs[*]}" >&2
             exit 1
           fi
+
+          python3 - "$package_dir/$expected_package" <<'PY'
+          import pathlib
+          import sys
+          import zipfile
+
+          package = pathlib.Path(sys.argv[1])
+          required = {
+              'tools/net8.0/any/Pidgeon.CLI.dll',
+              'tools/net8.0/any/Pidgeon.CLI.deps.json',
+              'tools/net8.0/any/Pidgeon.CLI.runtimeconfig.json',
+          }
+          with zipfile.ZipFile(package) as archive:
+              names = set(archive.namelist())
+          missing = sorted(required - names)
+          if missing:
+              raise SystemExit(f'packed CLI tool is missing executable payload: {missing!r}')
+          print(f'packed CLI payload verified ({len(names)} archive entries)')
+          PY
 
       - name: Normalize the NuGet candidate archive
         shell: bash
@@ -288,6 +289,18 @@ jobs:
           test -f artifacts/candidate/packages/Pidgeon.CLI.0.1.0-beta.2.nupkg
           test "$(find artifacts/candidate/packages -maxdepth 1 -name '*.nupkg' | wc -l)" -eq 1
           test "$(find artifacts/candidate/packages -maxdepth 1 -name '*.snupkg' | wc -l)" -eq 0
+
+      - name: Install and smoke the exact packed CLI candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          tool_path="$RUNNER_TEMP/pidgeon-cli-packed-tool"
+          dotnet tool install Pidgeon.CLI \
+            --version 0.1.0-beta.2 \
+            --tool-path "$tool_path" \
+            --add-source "$GITHUB_WORKSPACE/artifacts/candidate/packages" \
+            --add-source https://api.nuget.org/v3/index.json
+          bash pidgeon-tests/public-cli-smoke.sh "$tool_path/pidgeon" 0.1.0-beta.2
 
       - name: Download and verify the reviewed SBOM tool
         shell: bash
