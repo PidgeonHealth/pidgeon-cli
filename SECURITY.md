@@ -13,9 +13,9 @@ Two private channels:
 1. **Preferred — GitHub Security Advisory.** Open a private advisory from this repository's
    **Security → Advisories** tab. This creates an encrypted, audited channel and lets us
    collaborate on a fix without early disclosure.
-2. **Email.** `security@pidgeon.health`. Encrypt with our PGP key (fingerprint published at
-   <https://pidgeon.health/.well-known/pgp-key.asc>) if you can; unencrypted reports are also
-   accepted.
+2. **Email.** `security@pidgeon.health`. Encrypt with our PGP key (see the [published PGP
+   key](https://pidgeon.health/.well-known/pgp-key.asc)) if you can; unencrypted reports are
+   also accepted.
 
 Please include:
 

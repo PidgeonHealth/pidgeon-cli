@@ -22,12 +22,9 @@ jobs:
           dotnet-version: 8.0.x
 
       - name: Install the published tool
-        run: dotnet tool install --global Pidgeon.CLI --version 0.1.0-beta.1
+        run: dotnet tool install --global Pidgeon.CLI --version 0.1.0-beta.2
 
       - name: Community-command smoke
         run: |
           export PATH="$PATH:$HOME/.dotnet/tools"
-          pidgeon --version
-          pidgeon generate ADT^A01
-          pidgeon validate --help
-          pidgeon lookup --help
+          bash pidgeon-tests/public-cli-smoke.sh "$(command -v pidgeon)" 0.1.0-beta.2
