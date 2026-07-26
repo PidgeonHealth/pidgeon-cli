@@ -6,7 +6,7 @@
 set -euo pipefail
 
 cli="${1:?usage: public-cli-smoke.sh <pidgeon-binary> [expected-version]}"
-expected_version="${2:-0.1.0-beta.1}"
+expected_version="${2:-0.1.0-beta.2}"
 
 if [[ ! -x "$cli" ]]; then
   echo "CLI is not executable: $cli" >&2
@@ -102,5 +102,59 @@ set -e
 grep -q 'Artifacts differ' <<<"$diff_result"
 link="$("$cli" run link "$scratch/generated.pidgeonrun")"
 grep -q 'r1\.' <<<"$link"
+
+# Every community command needs an honest failure or unsupported-path probe as
+# well as its successful path above. Keep these in the isolated installed-tool
+# smoke, not a source-only unit test: later public trains must certify exactly
+# the bytes a stranger installs. Some discovery commands intentionally return a
+# successful empty result, while malformed requests and missing local artifacts
+# return a typed nonzero failure.
+expect_status_and_text() {
+  local expected_status="$1"
+  local expected_text="$2"
+  shift 2
+  local output
+  local status
+  set +e
+  output="$("$cli" "$@" 2>&1)"
+  status=$?
+  set -e
+  if [[ "$status" -ne "$expected_status" ]]; then
+    echo "Expected '$*' to exit $expected_status, got $status" >&2
+    echo "$output" >&2
+    exit 1
+  fi
+  if ! grep -Fq "$expected_text" <<<"$output"; then
+    echo "Expected '$*' output to contain '$expected_text'" >&2
+    echo "$output" >&2
+    exit 1
+  fi
+}
+
+expect_status_and_text 0 'No artifacts found.' \
+  artifacts search definitely-not-real --kind data-package
+expect_status_and_text 0 'No matching capability cells.' \
+  capabilities --standard definitely-not-real
+expect_status_and_text 1 "Unsupported shell 'definitely-not-a-shell'" \
+  completions definitely-not-a-shell
+expect_status_and_text 1 "Unknown package: 'definitely-not-real'." \
+  data remove definitely-not-real
+expect_status_and_text 1 'Input path does not exist:' \
+  deident "$scratch/definitely-not-real.hl7" "$scratch/deidentified-missing.hl7" --salt public-smoke
+test ! -e "$scratch/deidentified-missing.hl7"
+expect_status_and_text 0 'No results found.' \
+  find definitely-not-real --field --format json --limit 1
+expect_status_and_text 1 'Message type not recognized.' \
+  generate DefinitelyNotARealType --no-session
+expect_status_and_text 1 'Could not infer standard from path' \
+  lookup definitely-not-real --format json
+expect_status_and_text 1 'Invalid Path: definitely.not.real for ADT^A01' \
+  path validate definitely.not.real 'ADT^A01'
+expect_status_and_text 4 'Artifact not found:' \
+  run show "$scratch/definitely-not-real.pidgeonrun"
+expect_status_and_text 1 "Session 'definitely-not-real' not found" \
+  session show definitely-not-real
+expect_status_and_text 1 'File not found:' \
+  validate "$scratch/definitely-not-real.hl7"
 
 echo "public CLI smoke passed"

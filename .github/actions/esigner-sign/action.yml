@@ -1,0 +1,71 @@
+name: eSigner code-sign
+description: >-
+  Sign every file in a directory in place via SSL.com eSigner CodeSignTool
+  (cloud HSM, non-interactive TOTP MFA, automatic server-side timestamp). One
+  reusable step for all apps + sidecars under a single OV cert / eSigner
+  credential, so there is no per-app cert drift.
+
+inputs:
+  dir-path:
+    description: Directory whose signable files are signed in place.
+    required: true
+  es-username:
+    description: SSL.com eSigner account username.
+    required: true
+  es-password:
+    description: SSL.com eSigner account password.
+    required: true
+  credential-id:
+    description: eSigner credential id for the OV signing certificate.
+    required: true
+  es-totp-secret:
+    description: eSigner OAuth TOTP seed enabling non-interactive MFA in CI.
+    required: true
+
+runs:
+  using: composite
+  steps:
+    # batch_sign over a directory signs whatever is present, so we never hardcode
+    # the version-stamped NSIS filename. The action self-installs CodeSignTool +
+    # its Java runtime on the runner; timestamping is automatic server-side.
+    #
+    # IN-PLACE SIGNING: `override: true` is a no-op for batch_sign in v1.3.2 —
+    # CodeSignTool reports "Output directory for signed files: null" and leaves
+    # the originals UNSIGNED (signtool then finds no signature). So we sign into
+    # a clean temp dir via `output_path`, then move the signed files back over
+    # the originals. The move step fails loudly if eSigner produced nothing, so
+    # a silent "success" with unsigned output cannot slip through; the S3
+    # `signtool verify` step downstream is the second backstop.
+    - name: Prepare signed-output dir
+      shell: bash
+      run: |
+        rm -rf "${RUNNER_TEMP}/esigner-signed"
+        mkdir -p "${RUNNER_TEMP}/esigner-signed"
+    - name: Sign directory (eSigner batch_sign)
+      uses: SSLcom/esigner-codesign@cf5f6c1d38ad10f47e3ed9aca873f429b1a8d85b # v1.3.2
+      with:
+        command: batch_sign
+        username: ${{ inputs.es-username }}
+        password: ${{ inputs.es-password }}
+        credential_id: ${{ inputs.credential-id }}
+        totp_secret: ${{ inputs.es-totp-secret }}
+        dir_path: ${{ inputs.dir-path }}
+        output_path: ${{ runner.temp }}/esigner-signed
+        malware_block: true
+        environment_name: PROD
+        signing_method: v1
+    - name: Move signed files back in place
+      shell: bash
+      run: |
+        set -euo pipefail
+        src="${RUNNER_TEMP}/esigner-signed"
+        dst="${{ inputs.dir-path }}"
+        if [ -z "$(ls -A "$src" 2>/dev/null)" ]; then
+          echo "::error::eSigner produced no signed files in $src — signing did not complete (output_path empty)"
+          exit 1
+        fi
+        for f in "$src"/*; do
+          name="$(basename "$f")"
+          echo "in-place: $dst/$name"
+          mv -f "$f" "$dst/$name"
+        done

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "surface": "cli",
   "targetRepository": "PidgeonHealth/pidgeon-cli",
-  "upstreamSha": "baca659dbcc3a7b6601319aa3b135a69a165c695",
+  "upstreamSha": "4d346e3df8ee82b2781b034dc1c7ccb6c759ba8d",
   "sourceRef": "origin/main",
-  "manifestSha256": "be481561aa36b0f5fa9793b965378b2dc2590c3893ff03470135503d407f4606",
+  "manifestSha256": "b919172ed5a1956d59c1fddb77220af8dc6722ab31f74489cf0ff66150957d9c",
   "projectorPath": "scripts/public-release/project.mjs",
-  "projectorSha256": "f45498479728274e9a1e844bd83ca25a05c35b17c487e0544ffbfd2e10c942b8",
+  "projectorSha256": "a70429142507b2df33b911f7fe8a9c2bdfd7d1f06fba5e67e14ff2e0cd4e75d1",
   "compositionManifestPath": "config/public-compositions/community.yaml",
   "compositionManifestSha256": "560b0079e52d178389dbbdc6a556208b70cfeed16403dfa944f83cf6f8391f49",
   "secretScanner": "pidgeon-public-projection-v1",
@@ -20,6 +20,14 @@
       "license": "Pidgeon-Public-Documentation"
     },
     {
+      "path": ".github/actions/esigner-sign/action.yml",
+      "sha256": "561cfb51d56ce1168686d0079aa824287e8216324fb9cb3b6ea11c1a715885ab",
+      "size": 2874,
+      "mode": "100644",
+      "source": ".github/actions/esigner-sign/action.yml",
+      "license": "Pidgeon-Public-Documentation"
+    },
+    {
       "path": ".github/dependabot.yml",
       "sha256": "7332fc46fc7b75575a710362c1b64510a2e1f24bd248e7b3e45e38112a9a666d",
       "size": 533,
@@ -29,7 +37,7 @@
     },
     {
       "path": ".github/workflows/ci.yml",
-      "sha256": "6cd4d803ad9bc23756909b5ed7d42978ffaa79a377a5300c7eb9d5aa1a3ccf64",
+      "sha256": "4d0c420788550777220e76884b30a8a19fb27056d52cb44bdc7cb2e2ab93546d",
       "size": 1537,
       "mode": "100644",
       "source": "config/public-ci-templates/per-target/cli/ci.yml",
@@ -37,8 +45,8 @@
     },
     {
       "path": ".github/workflows/clean-build-smoke.yml",
-      "sha256": "2991f9506d8a8d622420712b012c138e47f541a898c34bbbdcca292af9efe602",
-      "size": 992,
+      "sha256": "163885ed55357a84275e63b7f6a75ffff0176f221cb600ba73a6c8df0aaa9bfd",
+      "size": 949,
       "mode": "100644",
       "source": "config/public-ci-templates/per-target/cli/clean-build-smoke.yml",
       "license": "Pidgeon-Public-Documentation"
@@ -53,8 +61,8 @@
     },
     {
       "path": ".github/workflows/release.yml",
-      "sha256": "60224d093e75a82b4945826e6cd3e8909d72a192666e035c62d3fc37423fe03c",
-      "size": 27474,
+      "sha256": "ce182f0f3c948ec9c1a14c8292843a62a630ea3ce3f7593763ac5ced54c59b08",
+      "size": 34977,
       "mode": "100644",
       "source": "config/public-ci-templates/per-target/cli/release.yml",
       "license": "Pidgeon-Public-Documentation"
@@ -109,7 +117,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "7bc6d174c9236391c99a29bc6137a7ad763c59f2880ad274bd4a486c293b6903",
+      "sha256": "48de5c91d172abe4707704e2603001f830c2cbc06a000deda996d568b66378e3",
       "size": 1910,
       "mode": "100644",
       "source": "config/public-projections/scaffold/cli/README.md",
@@ -117,8 +125,8 @@
     },
     {
       "path": "SECURITY.md",
-      "sha256": "8a512507d3ea20d64014b4cc18d8ae0ff3d8e4dd1bc20b99ee1f59b1451f0034",
-      "size": 2648,
+      "sha256": "324e616e71df9fb955ed6033a94c3f479cb339601e076ba7643797a2c46cf170",
+      "size": 2650,
       "mode": "100644",
       "source": "config/public-projections/scaffold/shared/SECURITY.md",
       "license": "Pidgeon-Public-Documentation"
@@ -389,7 +397,7 @@
     },
     {
       "path": "pidgeon-cli/src/Pidgeon.CLI/NUGET_README.md",
-      "sha256": "e340eb8af1c0164385a77379f28ccd3ccae1874c34052892da610a237ac7fcd2",
+      "sha256": "99580d2df725d5bd3334fcd27169f4079203690fd20ce5a9e51c6887fb71684e",
       "size": 1369,
       "mode": "100644",
       "source": "pidgeon-cli/src/Pidgeon.CLI/NUGET_README.md",
@@ -413,8 +421,8 @@
     },
     {
       "path": "pidgeon-cli/src/Pidgeon.CLI/Pidgeon.CLI.csproj",
-      "sha256": "5cdb861175d2e7a144efbc262bda1e2daef1727f27e88d384331937ba3958c81",
-      "size": 3091,
+      "sha256": "5748d250022f1ea2dae40103801eee4cd023fbee64004bd98649d6fa8567c7a4",
+      "size": 3144,
       "mode": "100644",
       "source": "config/public-projections/scaffold/cli/Pidgeon.CLI.csproj",
       "license": "MPL-2.0"
@@ -509,16 +517,16 @@
     },
     {
       "path": "pidgeon-cli/src/Pidgeon.CLI/packages.lock.json",
-      "sha256": "9cb1629d4056b53d3e728f6064f139529b080f9f6b3a458f48742179d1e13199",
-      "size": 18590,
+      "sha256": "2e674f87ef01f824f271f4cc080884d507198819d42c3d5c53e05c281b31aa82",
+      "size": 19061,
       "mode": "100644",
       "source": "config/public-projections/scaffold/cli/packages.lock.json",
       "license": "MPL-2.0"
     },
     {
       "path": "pidgeon-tests/public-cli-smoke.sh",
-      "sha256": "c34dbca99ada6029142addbef814f5cb0472d340fab2fe025f8fa935ee463ceb",
-      "size": 3696,
+      "sha256": "2a062f4e1e9f8952f9fe93ea1ec2b9494fa8eb8c884816ba08ea0e6f6ced33b7",
+      "size": 5990,
       "mode": "100755",
       "source": "pidgeon-tests/public-cli-smoke.sh",
       "license": "MPL-2.0"

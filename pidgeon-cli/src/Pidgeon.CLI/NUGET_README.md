@@ -5,7 +5,7 @@ Community healthcare message generation, validation, inspection, and testing too
 ## Install
 
 ```bash
-dotnet tool install --global Pidgeon.CLI --version 0.1.0-beta.1
+dotnet tool install --global Pidgeon.CLI --version 0.1.0-beta.2
 ```
 
 ## Quick Start

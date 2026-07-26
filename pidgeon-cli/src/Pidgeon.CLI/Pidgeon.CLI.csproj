@@ -9,6 +9,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
+    <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsPackable>true</IsPackable>
@@ -16,8 +17,8 @@
     <ToolCommandName>pidgeon</ToolCommandName>
 
     <PackageId>Pidgeon.CLI</PackageId>
-    <Version>0.1.0-beta.1</Version>
-    <PackageVersion>0.1.0-beta.1</PackageVersion>
+    <Version>0.1.0-beta.2</Version>
+    <PackageVersion>0.1.0-beta.2</PackageVersion>
     <AssemblyTitle>Pidgeon CLI</AssemblyTitle>
     <AssemblyDescription>Community healthcare message generation, validation, and testing toolkit</AssemblyDescription>
     <AssemblyCompany>Pidgeon Health</AssemblyCompany>
