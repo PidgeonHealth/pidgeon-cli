@@ -153,6 +153,24 @@ jobs:
             --no-build --no-restore -c Release -o artifacts/candidate/packages \
             -p:IncludeSymbols=false -p:SymbolPackageFormat=snupkg
 
+          # The runtime-closure build intentionally restores win-x64 before pack.
+          # The .NET SDK may therefore emit both the public package and its
+          # intermediate RID-suffixed companion. The release surface contains
+          # exactly one package: remove that one known intermediate only, and
+          # fail closed if the SDK emits anything else.
+          package_dir='artifacts/candidate/packages'
+          expected_package='Pidgeon.CLI.0.1.0-beta.2.nupkg'
+          intermediate_package='Pidgeon.CLI.win-x64.0.1.0-beta.2.nupkg'
+          mapfile -t generated_nupkgs < <(find "$package_dir" -maxdepth 1 -type f -name '*.nupkg' -printf '%f\n' | sort)
+          if [[ "${#generated_nupkgs[@]}" -eq 2 &&
+                "${generated_nupkgs[0]}" == "$expected_package" &&
+                "${generated_nupkgs[1]}" == "$intermediate_package" ]]; then
+            rm -- "$package_dir/$intermediate_package"
+          else
+            printf 'unexpected CLI package set:\n%s\n' "${generated_nupkgs[*]}" >&2
+            exit 1
+          fi
+
       - name: Normalize the NuGet candidate archive
         shell: bash
         run: |
