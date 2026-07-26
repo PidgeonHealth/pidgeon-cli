@@ -136,6 +136,14 @@ jobs:
       - name: Run the community command battery
         run: bash pidgeon-tests/public-cli-smoke.sh pidgeon-cli/src/Pidgeon.CLI/bin/Release/net8.0/Pidgeon.CLI 0.1.0-beta.2
 
+      # PackAsTool invokes publish targets for the declared win-x64 runtime graph.
+      # Build that exact project/RID closure after the framework-neutral command
+      # battery, rather than attempting an unsupported solution-wide RID build.
+      - name: Build the CLI package runtime closure
+        run: >-
+          dotnet build pidgeon-cli/src/Pidgeon.CLI/Pidgeon.CLI.csproj
+          --no-restore -c Release -r win-x64
+
       - name: Pack one unsigned CLI candidate
         shell: bash
         run: |
@@ -143,6 +151,7 @@ jobs:
           mkdir -p artifacts/candidate/packages
           dotnet pack pidgeon-cli/src/Pidgeon.CLI/Pidgeon.CLI.csproj \
             --no-build --no-restore -c Release -o artifacts/candidate/packages \
+            -p:RuntimeIdentifier=win-x64 \
             -p:IncludeSymbols=false -p:SymbolPackageFormat=snupkg
 
       - name: Normalize the NuGet candidate archive
