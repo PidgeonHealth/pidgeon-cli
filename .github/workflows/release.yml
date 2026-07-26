@@ -236,7 +236,7 @@ jobs:
                       # (1980-01-01) makes Apache Commons Compress add an
                       # extended-time extra field while signing; a fixed
                       # post-epoch timestamp round-trips byte-for-byte.
-                      info = zipfile.ZipInfo(target, date_time=(1980, 1, 1, 0, 0, 0))
+                      info = zipfile.ZipInfo(target, date_time=(2020, 1, 1, 0, 0, 0))
                       info.compress_type = entry.compress_type
                       info.create_system = 0
                       info.create_version = 20
