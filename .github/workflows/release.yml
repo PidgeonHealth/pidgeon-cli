@@ -143,6 +143,7 @@ jobs:
           mkdir -p artifacts/candidate/packages
           dotnet pack pidgeon-cli/src/Pidgeon.CLI/Pidgeon.CLI.csproj \
             --no-build --no-restore -c Release -o artifacts/candidate/packages \
+            -p:RuntimeIdentifiers= \
             -p:IncludeSymbols=false -p:SymbolPackageFormat=snupkg
 
           package_dir='artifacts/candidate/packages'
